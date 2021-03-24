@@ -29,3 +29,6 @@
 
 # jetbrains
 /.idea
+
+#cache composer
+/.composer
