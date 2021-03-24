@@ -1,0 +1,14 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/jangregor/phpstan-prophecy/extension.neon
+    - vendor/phpstan/phpstan-webmozart-assert/extension.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+
+    ignoreErrors:
+        - '#jsonSerialize\(\) return type has no value type specified in iterable type array.#'
+        - '#find\(\) expects int\|null, DateTime given.#'

@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+    app:
+        build: .
+        container_name: server_app_money
+        entrypoint: ./.devops/entrypoint.sh
+        environment:
+            - _DB_HOST=db
+            - _DB_DATABASE=code_micro_videos
+            - _DB_USERNAME=root
+            - _DB_PASSWORD=root
+            - _TEST_DB_DATABASE=code_micro_videos_test
+        volumes:
+            - .:/var/www
+        networks:
+            - app-network
+        depends_on:
+            - database
+
+    nginx:
+        build: .devops/nginx
+        container_name: server_app_nginx_money
+        restart: always
+        tty: true
+        ports:
+            - "8000:80"
+        volumes:
+            - .:/var/www
+        networks:
+            - app-network
+        depends_on:
+            - app
+
+    database:
+        build: ./.devops/mysql
+        container_name: database_money
+        restart: always
+        tty: true
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./.devops/dbdata:/var/lib/mysql
+            - ./.devops/mysql:/docker-entrypoint-initdb.d
+        environment:
+            - MYSQL_DATABASE=money_transfer
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=root
+        networks:
+            - app-network
+networks:
+    app-network:
+        driver: bridge

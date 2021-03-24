@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS money_transfer;
+CREATE DATABASE IF NOT EXISTS money_transfer_test;
