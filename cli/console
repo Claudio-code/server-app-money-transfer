@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it server_app_money bash -c  "bin/console $@"
