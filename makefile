@@ -19,4 +19,7 @@ dump:
 migrate: start
 	cli/migrate
 
-setup: build migrate
+migrate-test: start
+	cli/migrate-test
+
+setup: build migrate migrate-test
