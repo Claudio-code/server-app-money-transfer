@@ -15,3 +15,8 @@ rm:
 
 dump:
 	docker exec -it server_app_money bash -c  "composer dump-autoload"
+
+migrate: start
+	cli/migrate
+
+setup: build migrate

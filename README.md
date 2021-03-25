@@ -9,6 +9,11 @@ para rodar o projeto você precisará do [docker](https://www.docker.com) e [doc
 
 ## Como usar ?
 
+- Fazer o setup do projeto
+```
+ make setup
+```
+
 - Buildar os containers
 ```
  make build
@@ -22,4 +27,9 @@ para rodar o projeto você precisará do [docker](https://www.docker.com) e [doc
 - Derrubar os containers
 ```
  make down
+```
+
+- Rodar as migrations
+```
+ make migrate
 ```
