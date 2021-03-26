@@ -33,19 +33,19 @@ doctrine:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/MoneyTransfer'
-                prefix: 'MoneyTransfer'
+                prefix: 'App\MoneyTransfer'
                 alias: MoneyTransfer
 
             Wallet:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/MoneyTransfer/Wallet'
-                prefix: 'MoneyTransfer\Wallet'
+                prefix: 'App\MoneyTransfer\Wallet'
                 alias: Wallet
 
             User:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/MoneyTransfer/User'
-                prefix: 'MoneyTransfer\User'
+                prefix: 'App\MoneyTransfer\User'
                 alias: User

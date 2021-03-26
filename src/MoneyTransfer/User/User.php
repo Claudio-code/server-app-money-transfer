@@ -1,9 +1,11 @@
 <?php
 
-namespace MoneyTransfer\User;
+namespace App\MoneyTransfer\User;
 
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidV4Generator;
 use Symfony\Component\Uid\Uuid;
@@ -13,7 +15,7 @@ use Symfony\Component\Uid\Uuid;
  * @ORM\Table(name="users")
  */
 
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -27,7 +29,7 @@ class User
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class=UuidV4Generator::class)
      */
-    private $uuid;
+    private UuidType $uuid;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -56,6 +58,24 @@ class User
     private string $cpf;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="a senha não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
+     */
+    private string $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="a senha não pode ser nulo",
+     *     payload={"severity"="error"}
+     * )
+     */
+    private string $roles;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private DateTimeInterface $created_at;
@@ -75,7 +95,7 @@ class User
         return $this->id;
     }
 
-    public function getUuid()
+    public function getUuid(): UuidType
     {
         return $this->uuid;
     }
@@ -103,5 +123,45 @@ class User
     public function getUpdatedAt(): DateTimeInterface
     {
         return $this->updated_at;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = [];
+        $roles[] = $this->roles;
+
+        return $roles;
+    }
+
+    public function setRoles($roles): self
+    {
+        if (is_array($roles)) {
+            $this->roles = implode(',', $roles);
+        }
+        if (is_string($roles)) {
+            $this->roles = $roles;
+        }
+
+        return $this;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->email;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }
