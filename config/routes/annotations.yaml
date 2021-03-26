@@ -1,5 +1,6 @@
 controllers:
     resource: ../../src/Controller/
+    defaults: { _format: json }
     type: annotation
 
 kernel:

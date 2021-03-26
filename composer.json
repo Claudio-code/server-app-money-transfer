@@ -13,6 +13,7 @@
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "lexik/jwt-authentication-bundle": "^2.11",
         "nelmio/api-doc-bundle": "^3.0",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",
@@ -70,8 +71,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "MoneyTransfer\\": "src/MoneyTransfer"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
