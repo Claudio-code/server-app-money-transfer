@@ -70,7 +70,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/App",
+            "App\\": "src/",
             "MoneyTransfer\\": "src/MoneyTransfer"
         }
     },
