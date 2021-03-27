@@ -3,7 +3,6 @@
 namespace App\Controller\User\Create;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,13 +27,13 @@ class FormType extends AbstractType
                     new NotBlank(),
                 ],
             ])
-            ->add('cpf', CheckboxType::class, [
+            ->add('cpf', TextType::class, [
                 'required' => true,
                 'constraints' => [
                     new NotBlank(),
                 ],
             ])
-            ->add('cnh', CheckboxType::class, [
+            ->add('cnh', TextType::class, [
                 'required' => true,
                 'constraints' => [
                     new NotBlank(),
@@ -54,8 +53,7 @@ class FormType extends AbstractType
                         'min' => 5,
                     ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
