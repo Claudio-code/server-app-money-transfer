@@ -2,20 +2,20 @@
 
 namespace App\MoneyTransfer\User;
 
+use App\Controller\User\Create\UserDTO;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\IdGenerator\UuidV4Generator;
 use Symfony\Component\Uid\Uuid;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="users")
  */
 
-class User implements UserInterface
+class User implements UserInterface, \JsonSerializable
 {
     /**
      * @ORM\Id
@@ -25,11 +25,9 @@ class User implements UserInterface
     private int $id;
 
     /**
-     * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class=UuidV4Generator::class)
+     * @ORM\Column(type="string", unique=true, length=255)
      */
-    private UuidType $uuid;
+    private string $uuid;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -39,7 +37,7 @@ class User implements UserInterface
     private string $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank(message="O email não pode ser nulo")
      * @Assert\Email(
      *     message="O email não é um email valido"
@@ -49,13 +47,22 @@ class User implements UserInterface
     private string $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank(
      *     message="O cpf não pode ser nulo"
      * )
      * @Assert\Type(type="string")
      */
     private string $cpf;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(
+     *     message="o cnh não pode ser nulo"
+     * )
+     * @Assert\Type(type="string")
+     */
+    private string $cnh;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -85,17 +92,24 @@ class User implements UserInterface
      */
     private DateTimeInterface $updated_at;
 
+    public function __construct()
+    {
+        $this->uuid = Uuid::v4();
+        $this->created_at = new DateTime('now');
+        $this->updated_at = new DateTime('now');
+    }
+
     /**
      * Get the value of id
      *
      * @return int
      */
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getUuid(): UuidType
+    public function getUuid(): string
     {
         return $this->uuid;
     }
@@ -103,6 +117,11 @@ class User implements UserInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getCnh(): string
+    {
+        return $this->cnh;
     }
 
     public function getEmail(): string
@@ -147,7 +166,7 @@ class User implements UserInterface
 
     public function getPassword(): string
     {
-        return $this->email;
+        return $this->password;
     }
 
     public function getSalt()
@@ -163,5 +182,59 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public static function make(UserDTO $userDTO): self
+    {
+        return (new self())
+            ->setName($userDTO->getName())
+            ->setEmail($userDTO->getEmail())
+            ->setCpf($userDTO->getCpf())
+            ->setCnh($userDTO->getCnh())
+            ->setRoles($userDTO->getRoles());
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function setCpf(string $cpf): self
+    {
+        $this->cpf = $cpf;
+
+        return $this;
+    }
+
+    public function setCnh(string $cnh): self
+    {
+        $this->cnh = $cnh;
+
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->getName(),
+            'roles' => $this->getRoles(),
+            'email' => $this->getEmail(),
+        ];
     }
 }
