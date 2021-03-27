@@ -6,6 +6,10 @@ includes:
 
 parameters:
     level: max
+
+    symfony:
+		constant_hassers: false
+
     paths:
         - src
 
