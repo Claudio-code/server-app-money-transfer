@@ -3,6 +3,7 @@
 namespace App\Controller\User\Create;
 
 use App\Common\DataTransferObjectInteface;
+use App\MoneyTransfer\Wallet\Money;
 use OpenApi\Annotations as OA;
 
 /**
@@ -16,6 +17,7 @@ use OpenApi\Annotations as OA;
  *          @OA\Property(type="string", property="cnh", default="1332341242"),
  *          @OA\Property(type="string", property="roles", default="ROLE_USER"),
  *          @OA\Property(type="string", property="password", default="AmarElo_2"),
+ *          @OA\Property(type="float", property="money", default=2.22),
  *    )
  * )
  */
@@ -27,6 +29,7 @@ class UserDTO implements DataTransferObjectInteface
     private string $cnh;
     private string $roles;
     private string $password;
+    private Money $money;
 
     public function getName(): string
     {
@@ -86,5 +89,20 @@ class UserDTO implements DataTransferObjectInteface
     public function setCnh(string $cnh): void
     {
         $this->cnh = $cnh;
+    }
+
+    public function getMoney(): Money
+    {
+        return $this->money;
+    }
+
+    public function setMoney(Money|float $money): void
+    {
+        if ($money instanceof Money) {
+            $this->money = $money;
+            return;
+        }
+
+        $this->money = new Money($money);
     }
 }

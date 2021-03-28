@@ -3,12 +3,13 @@
 namespace App\Test\Feature;
 
 use App\Tests\RequestTrait;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 class CreateUserTest extends WebTestCase
 {
-    private $client;
+    private KernelBrowser $client;
 
     private array $jsonParams = [
         'name' => 'carlos',
@@ -16,7 +17,8 @@ class CreateUserTest extends WebTestCase
         'cpf' => '02305232924',
         'cnh' => '1412341242',
         'roles' => 'ROLE_SHOPKEEPER',
-        'password' => 'AmarElo_1'
+        'password' => 'AmarElo_1',
+        'money' => 5.34,
     ];
 
     protected function setUp(): void

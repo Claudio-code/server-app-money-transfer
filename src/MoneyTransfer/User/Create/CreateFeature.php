@@ -20,7 +20,7 @@ class CreateFeature
         $this->userRepository = $userRepository;
     }
 
-    public function execute(UserDTO $userDTO)
+    public function execute(UserDTO $userDTO): User
     {
         $user = $this->userRepository->findOneBy([
             'cpf' => $userDTO->getCpf()
@@ -42,6 +42,6 @@ class CreateFeature
         }
         $this->userRepository->commit();
 
-        return $user->jsonSerialize();
+        return $user;
     }
 }

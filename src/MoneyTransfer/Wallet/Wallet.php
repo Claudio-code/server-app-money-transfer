@@ -24,9 +24,8 @@ class Wallet
     /** @ORM\Embedded(class=Money::class) */
     private Money $money;
 
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
         $this->money = new Money(0);
     }
 

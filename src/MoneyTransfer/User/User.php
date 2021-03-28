@@ -99,7 +99,7 @@ class User implements UserInterface, \JsonSerializable
     private DateTimeInterface $updated_at;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\MoneyTransfer\Wallet\Wallet", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="App\MoneyTransfer\Wallet\Wallet", inversedBy="user", cascade="persist")
      */
     private Wallet $wallet;
 
@@ -197,12 +197,16 @@ class User implements UserInterface, \JsonSerializable
 
     public static function make(UserDTO $userDTO): self
     {
+        $wallet = new Wallet();
+        $wallet->setMoney($userDTO->getMoney());
+
         return (new self())
             ->setName($userDTO->getName())
             ->setEmail($userDTO->getEmail())
             ->setCpf($userDTO->getCpf())
             ->setCnh($userDTO->getCnh())
-            ->setRoles($userDTO->getRoles());
+            ->setRoles($userDTO->getRoles())
+            ->setWallet($wallet);
     }
 
     public function setName(string $name): self
@@ -245,9 +249,11 @@ class User implements UserInterface, \JsonSerializable
         return $this->wallet;
     }
 
-    public function setWallet(Wallet $wallet): void
+    public function setWallet(Wallet $wallet): self
     {
         $this->wallet = $wallet;
+
+        return $this;
     }
 
     public function jsonSerialize(): array
