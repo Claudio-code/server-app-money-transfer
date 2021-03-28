@@ -13,6 +13,7 @@
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "guzzlehttp/guzzle": "^7.3",
         "lexik/jwt-authentication-bundle": "^2.11",
         "phpdocumentor/reflection-docblock": "^5.2",
         "ramsey/uuid-doctrine": "^1.6",
@@ -63,8 +64,7 @@
         "symfony/stopwatch": "^5.2",
         "symfony/var-dumper": "^5.2",
         "symfony/web-profiler-bundle": "^5.2",
-        "symfony/web-server-bundle": "^4.4.2",
-        "ext-http": "*"
+        "symfony/web-server-bundle": "^4.4.2"
     },
     "config": {
         "optimize-autoloader": true,
