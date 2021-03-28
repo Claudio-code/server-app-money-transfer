@@ -19,6 +19,9 @@ swagger-run:
 dump:
 	docker exec -it server_app_money bash -c  "composer dump-autoload"
 
+migrate-diff: start
+	 cli/console doctrine:migrations:diff
+
 migrate: start
 	cli/migrate
 

@@ -3,6 +3,7 @@
 namespace App\MoneyTransfer\User;
 
 use App\Controller\User\Create\UserDTO;
+use App\MoneyTransfer\Wallet\Wallet;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -96,6 +97,11 @@ class User implements UserInterface, \JsonSerializable
      * @ORM\Column(type="datetime")
      */
     private DateTimeInterface $updated_at;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\MoneyTransfer\Wallet\Wallet", inversedBy="user")
+     */
+    private Wallet $wallet;
 
     public function __construct()
     {
@@ -232,6 +238,16 @@ class User implements UserInterface, \JsonSerializable
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getWallet(): Wallet
+    {
+        return $this->wallet;
+    }
+
+    public function setWallet(Wallet $wallet): void
+    {
+        $this->wallet = $wallet;
     }
 
     public function jsonSerialize(): array
