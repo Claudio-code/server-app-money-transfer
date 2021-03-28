@@ -1,0 +1,12 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentação da api de transferencia de dinheiro."
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/",
+            "base": "url base da api"
+        }
+    ]
+}

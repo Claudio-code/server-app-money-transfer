@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: 'Money Transfer'
+  description: 'Documentação da api de transferencia de dinheiro.'
+  version: '1.0'
+servers:
+  -
+    url: 'http://localhost:8000/api/'
+paths:
+  /user/:
+    post:
+      operationId: 'App\Controller\User\Create\Controller::__invoke'
+      responses:
+        '200':
+          description: 'criação de usuario'
+          content:
+            application/json:
+              schema:
+                description: test
+                type: string
