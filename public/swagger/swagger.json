@@ -13,17 +13,109 @@
     "paths": {
         "/user/": {
             "post": {
-                "description": "Cadastro de usuarios",
+                "description": "Cadastro de novos usuarios.",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/CreateUserDTO"
+                },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "criação de usuario",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "description": "test",
-                                    "type": "string"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
                                 }
                             }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro de usuario já existente na base.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "App\\\\MoneyTransfer\\\\User\\\\Create\\\\UserAlreadyExistsException"
+                                        },
+                                        "error": {
+                                            "type": "string",
+                                            "default": "o usuario do cpf 02305232924 já existe no sistema."
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "default": "/var/www/src/MoneyTransfer/User/Create/UserAlreadyExistsException.php"
+                                        },
+                                        "line": {
+                                            "type": "int",
+                                            "default": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "default": "carlos"
+                    },
+                    "email": {
+                        "type": "email",
+                        "default": "shopkeeper@gmail.com"
+                    },
+                    "roles": {
+                        "type": "roles",
+                        "default": "ROLE_SHOPKEEPER"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "requestBodies": {
+            "CreateUserDTO": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "default": "antoino"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "default": "user@gmail.com"
+                                },
+                                "cpf": {
+                                    "type": "string",
+                                    "default": "68308284914"
+                                },
+                                "cnh": {
+                                    "type": "string",
+                                    "default": "1332341242"
+                                },
+                                "roles": {
+                                    "type": "string",
+                                    "default": "ROLE_USER"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "default": "AmarElo_2"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 }

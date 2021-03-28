@@ -9,8 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Uid\Uuid;
+use OpenApi\Annotations as OA;
 
 /**
+ * @OA\Schema()
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="users")
  */
@@ -30,6 +32,7 @@ class User implements UserInterface, \JsonSerializable
     private string $uuid;
 
     /**
+     * @OA\Property(type="string", default="carlos")
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="o nome não pode ser nulo", payload={"severity"="error"})
      * @Assert\Type(type="string")
@@ -37,6 +40,7 @@ class User implements UserInterface, \JsonSerializable
     private string $name;
 
     /**
+     * @OA\Property(type="email", default="shopkeeper@gmail.com")
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank(message="O email não pode ser nulo")
      * @Assert\Email(
@@ -74,6 +78,7 @@ class User implements UserInterface, \JsonSerializable
     private string $password;
 
     /**
+     * @OA\Property(type="roles", default="ROLE_SHOPKEEPER")
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
      *     message="a senha não pode ser nulo",

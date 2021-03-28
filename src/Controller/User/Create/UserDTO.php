@@ -3,7 +3,22 @@
 namespace App\Controller\User\Create;
 
 use App\Common\DataTransferObjectInteface;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\RequestBody(
+ *     request="CreateUserDTO",
+ *     required=true,
+ *     @OA\JsonContent(
+ *          @OA\Property(type="string", property="name", default="antoino"),
+ *          @OA\Property(type="string", property="email", default="user@gmail.com"),
+ *          @OA\Property(type="string", property="cpf", default="68308284914"),
+ *          @OA\Property(type="string", property="cnh", default="1332341242"),
+ *          @OA\Property(type="string", property="roles", default="ROLE_USER"),
+ *          @OA\Property(type="string", property="password", default="AmarElo_2"),
+ *    )
+ * )
+ */
 class UserDTO implements DataTransferObjectInteface
 {
     private string $name;
