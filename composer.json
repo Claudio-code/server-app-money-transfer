@@ -28,6 +28,7 @@
         "symfony/intl": "5.2.*",
         "symfony/mailer": "5.2.*",
         "symfony/mime": "5.2.*",
+        "symfony/monolog-bridge": "5.2.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "5.2.*",
         "symfony/process": "5.2.*",
@@ -62,7 +63,8 @@
         "symfony/stopwatch": "^5.2",
         "symfony/var-dumper": "^5.2",
         "symfony/web-profiler-bundle": "^5.2",
-        "symfony/web-server-bundle": "^4.4.2"
+        "symfony/web-server-bundle": "^4.4.2",
+        "ext-http": "*"
     },
     "config": {
         "optimize-autoloader": true,

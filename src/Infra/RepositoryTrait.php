@@ -10,6 +10,13 @@ trait RepositoryTrait
         $this->getEntityManager()->refresh($entity);
     }
 
+    public function remove(object $doctrineEntity): void
+    {
+        $manager = $this->getEntityManager();
+        $manager->remove($doctrineEntity);
+        $manager->flush();
+    }
+
     public function beginTransaction(): void
     {
         $this
