@@ -13,6 +13,9 @@ stop:
 rm:
 	docker-compose rm
 
+swagger-run:
+	cli/swagger-run
+
 dump:
 	docker exec -it server_app_money bash -c  "composer dump-autoload"
 
