@@ -36,22 +36,12 @@ para rodar o projeto você precisará do [docker](https://www.docker.com) e [doc
  make setup
 ```
 
-- Buildar os containers
-```
- make build
-```
-
-- Iniciar os containers
-```
- make start
-```
-
-- Derrubar os containers
-```
- make down
-```
-
-- Rodar as migrations
+- Depois rodar as migrations
 ```
  make migrate
+```
+
+- Para rodar os testes
+```
+ make run-all-tests
 ```

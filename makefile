@@ -22,13 +22,13 @@ dump:
 migrate-diff: start
 	 cli/console doctrine:migrations:diff
 
-migrate: start
-	cli/migrate
-
 migrate-test: start
 	cli/migrate-test
+
+migrate: migrate-test
+	cli/migrate
 
 run-all-tests: start migrate-test
 	cli/run-all-tests
 
-setup: build migrate migrate-test run-all-tests
+setup: build
