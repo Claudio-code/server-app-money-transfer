@@ -27,7 +27,7 @@ url do endpoint para fazer as transferencias: http://localhost:8000/api/transfer
     "userSendingMoney": "37584366058",
     "money": 2,
     "userReceivingMoney": "83605495087"
-}
+ }
 ```
 
  - carlos
