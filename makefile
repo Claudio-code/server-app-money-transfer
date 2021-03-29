@@ -31,5 +31,4 @@ migrate-test: start
 run-all-tests: start migrate-test
 	cli/run-all-tests
 
-setup:
-	cli/setup
+setup: build migrate migrate-test run-all-tests

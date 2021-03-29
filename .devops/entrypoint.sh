@@ -7,6 +7,8 @@ chown -R www-data:www-data .
 
 composer install
 
+composer dump-autoload
+
 php bin/console server:start
 
 chmod -R 777 .
