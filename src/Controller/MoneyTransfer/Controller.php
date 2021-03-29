@@ -4,11 +4,11 @@ namespace App\Controller\MoneyTransfer;
 
 use App\Infra\Http\Form\ValidateFormService;
 use App\MoneyTransfer\Transfer\TransferFeature;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Annotations as OA;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @OA\Post (
@@ -37,12 +37,11 @@ class Controller extends AbstractController
     public function __invoke(
         Request $request,
         TransferFeature $transferFeature,
-    ): Response {
+    ): JsonResponse {
         $form = $this->createForm(FormType::class);
         $form->submit($request->request->all());
         ValidateFormService::validate($form);
 
-        $transferFeature->execute($form->getData());
-        return new Response();
+        return $this->json($transferFeature->execute($form->getData()));
     }
 }

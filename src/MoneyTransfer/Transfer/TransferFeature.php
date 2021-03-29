@@ -30,7 +30,8 @@ class TransferFeature
         }
     }
 
-    public function execute(MoneyTransferDTO $moneyTransferDTO): void
+    /** @return mixed[] */
+    public function execute(MoneyTransferDTO $moneyTransferDTO): array
     {
         $this->compareCpf($moneyTransferDTO);
         $userSendingMoney = $this->userRepository->findUserByCpf(
@@ -61,5 +62,22 @@ class TransferFeature
             throw $exception;
         }
         $this->userRepository->commit();
+
+        return [
+            'userSendingMoney' => [
+                'name' => $userSendingMoney->getName(),
+                'cpf' => $userSendingMoney->getCpf(),
+                'wallet' => [
+                    'money' => $userSendingMoney->getWallet()->getMoney(),
+                ],
+            ],
+            'userReceivingMoney' => [
+                'name' => $userReceivingMoney->getName(),
+                'cpf' => $userReceivingMoney->getCpf(),
+                'wallet' => [
+                    'money' => $userReceivingMoney->getWallet()->getMoney(),
+                ],
+            ],
+        ];
     }
 }
