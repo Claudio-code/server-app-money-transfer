@@ -13,6 +13,9 @@ stop:
 rm:
 	docker-compose rm
 
+open-doc:
+	cli/open-doc
+
 swagger-run:
 	cli/swagger-run
 
@@ -31,4 +34,4 @@ migrate-test: start
 run-all-tests: start migrate-test
 	cli/run-all-tests
 
-setup: build migrate migrate-test run-all-tests
+setup: build migrate migrate-test run-all-tests open-doc
