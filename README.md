@@ -15,17 +15,23 @@ para rodar o projeto você precisará do [docker](https://www.docker.com) e [doc
   Usuarios já cadastrados no sistema
 </h5>
 
+    Para transferir o dinheiro mande o cpf de quem vai transferir e o de quem vai receber e o valor a ser transferido.
+
  - carlos
     - cpf: 02305232924
+    - tipo: lojista
 
  - carlos
     - cpf: 37584366058
+    - tipo: usuario
 
  - carla
     - cpf: 71507711069
+    - tipo: usuario
 
  - marcos
     - cpf: 83605495087
+    - tipo: lojista
 
 ---
 

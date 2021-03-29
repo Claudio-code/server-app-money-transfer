@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @OA\Post (
  *     path="/transfer/",
- *     description="rota de transferencia de dinheiro entre os usuarios.",
+ *     description="rota de transferencia de dinheiro entre os usuarios, para transferir o dinheiro mande o cpf de quem vai transferir e de quem vai receber e o valor a ser transferido.",
  *     @OA\RequestBody(ref="#/components/requestBodies/MoneyTransferDTO"),
  *     @OA\Response(
  *        response="200",
