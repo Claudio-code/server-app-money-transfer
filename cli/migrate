@@ -1,4 +1,3 @@
 #!/bin/bash
 
-docker exec -it server_app_money bash -c "chmod -R 777 ."
-docker exec -it server_app_money bash -c  "bin/console doctrine:migrations:migrate --no-interaction"
+docker exec -it server_app_money bash -c  "php bin/console doctrine:migrations:migrate --no-interaction"
