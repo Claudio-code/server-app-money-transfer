@@ -1,14 +1,5 @@
 #!/bin/bash
 
-docker-compose up -d --build
-docker exec -it server_app_money bash -c  "php bin/console doctrine:migrations:migrate --no-interaction"
-docker exec -it database_money bash -c  "mysql -u root -proot </sqlTesttable.sql"
-docker exec -it server_app_money bash -c  "php bin/console doctrine:migrations:migrate --no-interaction --env=test"
-docker exec -it server_app_money bash -c  "./vendor/bin/simple-phpunit"
-
-echo "Espero que vc tenha uma boa esperiencia com a api"
-echo "E que me contrate :)"
-
 if command -v google-chrome; then
     google-chrome "http://localhost:8000/"
     google-chrome "http://localhost:8000/swagger/"
