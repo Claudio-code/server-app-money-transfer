@@ -8,6 +8,6 @@ class ShopkeeperNotTransferMoneyException extends \Exception implements MoneyTra
 {
     public static function shopkeeperNotTransferMoney(string $name, string $cpf): self
     {
-        return new self("O usuario de nome $name e cpf $cpf é um lojista e não pode tranbsferir dinheiro.", 401);
+        return new self("O usuario de nome $name e cpf $cpf é um lojista e não pode transferir dinheiro.", 401);
     }
 }

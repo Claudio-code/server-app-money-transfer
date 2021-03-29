@@ -23,8 +23,16 @@ class TransferFeature
         $this->userReceivingMoneyService = $userReceivingMoneyService;
     }
 
+    public function compareCpf(MoneyTransferDTO $moneyTransferDTO): void
+    {
+        if ($moneyTransferDTO->getUserReceivingMoney() === $moneyTransferDTO->getUserSendingMoney()) {
+            throw new UserTransferAndUserRecivingSameCpfException('O cpf do usuario que esta mandando e recebendo é o mesmo.');
+        }
+    }
+
     public function execute(MoneyTransferDTO $moneyTransferDTO): void
     {
+        $this->compareCpf($moneyTransferDTO);
         $userSendingMoney = $this->userRepository->findUserByCpf(
             $moneyTransferDTO->getUserSendingMoney()
         );

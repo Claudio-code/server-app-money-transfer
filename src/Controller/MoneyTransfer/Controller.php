@@ -21,7 +21,6 @@ class Controller extends AbstractController
         ValidateFormService::validate($form);
 
         $transferFeature->execute($form->getData());
-
         return new Response();
     }
 }
