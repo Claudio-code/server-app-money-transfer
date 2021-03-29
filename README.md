@@ -31,18 +31,22 @@ url do endpoint para fazer as transferencias: http://localhost:8000/api/transfer
  - carlos
     - cpf: 02305232924
     - tipo: lojista
+    - valor na carteira digital: 54.22
 
  - carlos
     - cpf: 37584366058
     - tipo: usuario
+    - valor na carteira digital: 35.02
 
  - carla
     - cpf: 71507711069
     - tipo: usuario
+    - valor na carteira digital: 22.22
 
  - marcos
     - cpf: 83605495087
     - tipo: lojista
+    - valor na carteira digital: 22.22
 
 ---
 
