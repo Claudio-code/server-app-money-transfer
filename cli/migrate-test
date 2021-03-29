@@ -1,4 +1,5 @@
 #!/bin/bash
 
+docker exec -it server_app_money bash -c "chmod -R 777 ."
 docker exec -it database_money bash -c  "mysql -u root -proot </sqlTesttable.sql"
 docker exec -it server_app_money bash -c  "bin/console doctrine:migrations:migrate --no-interaction --env=test"
