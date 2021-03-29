@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\MoneyTransfer\Wallet;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -35,5 +34,10 @@ class Money implements \JsonSerializable
     public function jsonSerialize(): float
     {
         return $this->value;
+    }
+
+    public function add(float $value): void
+    {
+        $this->value += $value;
     }
 }

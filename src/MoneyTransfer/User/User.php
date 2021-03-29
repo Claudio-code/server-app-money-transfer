@@ -155,12 +155,9 @@ class User implements UserInterface, \JsonSerializable
         return $this->updated_at;
     }
 
-    public function getRoles(): array
+    public function getRoles(): string
     {
-        $roles = [];
-        $roles[] = $this->roles;
-
-        return $roles;
+        return $this->roles;
     }
 
     public function setRoles($roles): self

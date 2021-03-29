@@ -82,6 +82,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
             $genericError = [
                 'status' => JsonResponse::HTTP_INTERNAL_SERVER_ERROR,
                 'error' => 'Aconteceu um erro inesperado.',
+                'error' => $exception->getMessage(),
                 'type' => $exception::class,
                 'file' => $exception->getFile(),
                 'line' => $exception->getLine(),

@@ -96,7 +96,7 @@ class UserDTO implements DataTransferObjectInteface
         return $this->money;
     }
 
-    public function setMoney(Money|float $money): void
+    public function setMoney(Money | float $money): void
     {
         if ($money instanceof Money) {
             $this->money = $money;

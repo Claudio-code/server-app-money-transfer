@@ -53,4 +53,19 @@ class Wallet
     {
         $this->money = $money;
     }
+
+    public function subtractMoney(float $valueSubtracted): void
+    {
+        $result = $this->money->getValue() - $valueSubtracted;
+        if ($result < 0) {
+            throw InsufficientMoneyTransferException::insufficientMoneyTransfer();
+        }
+
+        $this->money->setValue($result);
+    }
+
+    public function addMoney(float $value): void
+    {
+        $this->money->add($value);
+    }
 }
