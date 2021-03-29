@@ -12,12 +12,12 @@ class CreateUserTest extends WebTestCase
     private KernelBrowser $client;
 
     private array $jsonParams = [
-        'name' => 'carlos',
-        'email' => 'shopkeeper@gmail.com',
-        'cpf' => '02305232924',
-        'cnh' => '1412341242',
+        'name' => 'ana',
+        'email' => 'ana@gmail.com',
+        'cpf' => '59792440003',
+        'cnh' => '08613403611',
         'roles' => 'ROLE_SHOPKEEPER',
-        'password' => 'AmarElo_1',
+        'password' => 'AmarElo_5',
         'money' => 5.34,
     ];
 
