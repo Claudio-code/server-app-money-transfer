@@ -3,7 +3,19 @@
 namespace App\Controller\MoneyTransfer;
 
 use App\MoneyTransfer\Wallet\Money;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\RequestBody(
+ *     request="MoneyTransferDTO",
+ *     required=true,
+ *     @OA\JsonContent(
+ *          @OA\Property(type="string", property="userSendingMoney", default="37584366058"),
+ *          @OA\Property(type="string", property="userReceivingMoney", default="02305232924"),
+ *          @OA\Property(type="float", property="money", default=2.22),
+ *    )
+ * )
+ */
 class MoneyTransferDTO
 {
     private string $userSendingMoney;

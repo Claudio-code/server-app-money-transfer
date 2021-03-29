@@ -11,6 +11,47 @@
         }
     ],
     "paths": {
+        "/transfer/": {
+            "post": {
+                "description": "rota de transferencia de dinheiro entre os usuarios.",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/MoneyTransferDTO"
+                },
+                "responses": {
+                    "200": {
+                        "description": "dinheiro transferido"
+                    },
+                    "400": {
+                        "description": "Erro dinheiro insuficiente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "default": "App\\\\MoneyTransfer\\\\Wallet\\\\InsufficientMoneyTransferException"
+                                        },
+                                        "error": {
+                                            "type": "string",
+                                            "default": "Dinheiro insuficiente para fazer a transferencia."
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "default": "/var/www/src/MoneyTransfer/Wallet/InsufficientMoneyTransferException.php"
+                                        },
+                                        "line": {
+                                            "type": "int",
+                                            "default": 11
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/user/": {
             "post": {
                 "description": "Cadastro de novos usuarios.",
@@ -84,6 +125,30 @@
             }
         },
         "requestBodies": {
+            "MoneyTransferDTO": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "userSendingMoney": {
+                                    "type": "string",
+                                    "default": "37584366058"
+                                },
+                                "userReceivingMoney": {
+                                    "type": "string",
+                                    "default": "02305232924"
+                                },
+                                "money": {
+                                    "type": "float",
+                                    "default": 2.22
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
             "CreateUserDTO": {
                 "required": true,
                 "content": {
@@ -91,7 +156,6 @@
                         "schema": {
                             "properties": {
                                 "name": {
-                                    "required": "[true]",
                                     "type": "string",
                                     "default": "antoino"
                                 },
