@@ -15,7 +15,18 @@ para rodar o projeto você precisará do [docker](https://www.docker.com) e [doc
   Usuarios já cadastrados no sistema
 </h5>
 
-    Para transferir o dinheiro mande o cpf de quem vai transferir e o de quem vai receber e o valor a ser transferido.
+Para transferir o dinheiro mande o cpf de quem vai transferir e o de quem vai receber e o valor a ser transferido.
+
+Por exemplo: será mandado 2 reais do carlos para o marcos.
+url do endpoint para fazer as transferencias: http://localhost:8000/api/transfer/
+
+```
+ {
+    "userSendingMoney": "37584366058",
+    "money": 2,
+    "userReceivingMoney": "02305232924"
+}
+```
 
  - carlos
     - cpf: 02305232924
