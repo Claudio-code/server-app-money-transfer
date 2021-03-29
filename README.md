@@ -9,6 +9,7 @@ para rodar o projeto você precisará do [docker](https://www.docker.com) e [doc
 
 - url base da api = [localhost](http://localhost:8000/);
 - url da documentação do swagger = [swagger](http://localhost:8000/swagger/);
+- url da documentaçaõ do postman = [postman](https://documenter.getpostman.com/view/7588133/TzCL8oL7);
 
 ---
 <h5 align="center">
