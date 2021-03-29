@@ -6,12 +6,6 @@ services:
         build: .
         container_name: server_app_money
         entrypoint: ./.devops/entrypoint.sh
-        environment:
-            - _DB_HOST=db
-            - _DB_DATABASE=code_micro_videos
-            - _DB_USERNAME=root
-            - _DB_PASSWORD=root
-            - _TEST_DB_DATABASE=code_micro_videos_test
         volumes:
             - .:/var/www
         networks:
